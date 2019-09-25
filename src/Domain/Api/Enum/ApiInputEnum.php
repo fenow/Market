@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Domain\Api\Enum;
-
 
 use Greg0ire\Enum\AbstractEnum;
 

@@ -37,13 +37,13 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
     private $status = SessionStatusEnum::Created;
 
     /**
-     * @var float $priceWatched
+     * @var float
      * @ORM\Column(type="float")
      */
     private $priceWatched;
 
     /**
-     * @var \DateTime $watchedAt
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
     private $watchedAt;
@@ -83,7 +83,6 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
      */
     private $marketSellOrderId;
 
-
     /**
      * @ORM\OneToMany(targetEntity="SessionLog", mappedBy="session")
      */
@@ -93,7 +92,6 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
     {
         $this->logs = new ArrayCollection();
     }
-
 
     /**
      * @return float
@@ -105,6 +103,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param float $priceWatched
+     *
      * @return Session
      */
     public function setPriceWatched(float $priceWatched): self
@@ -117,13 +116,14 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
     /**
      * @return \DateTime
      */
-    public function getWatchedAt() : \DateTime
+    public function getWatchedAt(): \DateTime
     {
         return $this->watchedAt;
     }
 
     /**
      * @param \DateTime $watchedAt
+     *
      * @return Session
      */
     public function setWatchedAt(\DateTime $watchedAt): self
@@ -143,6 +143,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param string $market
+     *
      * @return Session
      */
     public function setMarket(string $market): self
@@ -162,6 +163,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param string $pair
+     *
      * @return Session
      */
     public function setPair(string $pair): self
@@ -181,6 +183,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param string $status
+     *
      * @return Session
      */
     public function setStatus(string $status): self
@@ -200,6 +203,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param float $priceBuyed
+     *
      * @return Session
      */
     public function setPriceBuyed(float $priceBuyed): self
@@ -219,6 +223,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param \DateTimeInterface $buyedAt
+     *
      * @return Session
      */
     public function setBuyedAt(\DateTimeInterface $buyedAt): self
@@ -238,6 +243,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param float $priceSold
+     *
      * @return Session
      */
     public function setPriceSold(float $priceSold): self
@@ -257,6 +263,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param \DateTimeInterface $soldAt
+     *
      * @return Session
      */
     public function setSoldAt(\DateTimeInterface $soldAt): self
@@ -284,11 +291,13 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param string $marketBuyOrderId
+     *
      * @return Session
      */
     public function setMarketBuyOrderId(string $marketBuyOrderId): self
     {
         $this->marketBuyOrderId = $marketBuyOrderId;
+
         return $this;
     }
 
@@ -302,11 +311,13 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param string $marketSellOrderId
+     *
      * @return Session
      */
     public function setMarketSellOrderId(string $marketSellOrderId): self
     {
         $this->marketSellOrderId = $marketSellOrderId;
+
         return $this;
     }
 
@@ -320,6 +331,7 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
 
     /**
      * @param float $quantityBuyed
+     *
      * @return Session
      */
     public function setQuantityBuyed(float $quantityBuyed): self

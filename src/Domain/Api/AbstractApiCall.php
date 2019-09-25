@@ -34,15 +34,18 @@ abstract class AbstractApiCall implements ApiCallInterface
     }
 
     /**
-     * @param array $options
+     * @param array  $options
      * @param string $outputFormat
+     *
      * @return mixed|string
+     *
      * @throws ApiError
      * @throws ApiMethodMissing
      * @throws ApiUrlMissing
      */
-    public function call(array $options = [], string $outputFormat = ApiInputEnum::RAW) {
-        if(is_null($this->method)) {
+    public function call(array $options = [], string $outputFormat = ApiInputEnum::RAW)
+    {
+        if (is_null($this->method)) {
             throw new ApiMethodMissing();
         } elseif (is_null($this->url)) {
             throw new ApiUrlMissing();

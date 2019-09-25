@@ -20,7 +20,8 @@ class SessionRepository extends ServiceEntityRepository
         parent::__construct($registry, Session::class);
     }
 
-    public function getSessionsCurrentlyTrade()  {
+    public function getSessionsCurrentlyTrade()
+    {
         return $this->createQueryBuilder('s')
             ->select('s')
             ->andWhere('s.status <> :status')
@@ -30,7 +31,8 @@ class SessionRepository extends ServiceEntityRepository
         ;
     }
 
-    public function getPairCurrentlyTrading() {
+    public function getPairCurrentlyTrading()
+    {
         return array_column($this->createQueryBuilder('s')
             ->select('s.pair')
             ->andWhere('s.status <> :status')

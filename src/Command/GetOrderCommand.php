@@ -1,12 +1,9 @@
 <?php
 
-
-Namespace App\Command;
+namespace App\Command;
 
 use App\Domain\Exchange\ExchangeHelpers;
-use App\Domain\Exchange\Interfaces\ExchangeGetBalanceInterface;
 use App\Domain\Exchange\Interfaces\ExchangeGetOrderInterface;
-use App\Domain\Exchange\Interfaces\ExchangeGetTickerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,7 +13,6 @@ class GetOrderCommand extends Command
 {
     // the name of the command (the part after "bin/console")
     protected static $defaultName = 'app:get-order';
-
 
     public function configure()
     {
@@ -29,8 +25,9 @@ class GetOrderCommand extends Command
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|void|null
      */
     protected function execute(InputInterface $input, OutputInterface $output)

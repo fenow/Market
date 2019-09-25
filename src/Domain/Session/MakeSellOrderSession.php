@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Domain\Session;
-
 
 use App\Domain\Exchange\Interfaces\ExchangeGetTickerInterface;
 use App\Domain\Exchange\Interfaces\ExchangeMakeSellOrderInterface;
@@ -35,9 +33,11 @@ class MakeSellOrderSession implements UpdateSessionWithExchangeOrderInterface, E
 
     /**
      * @param Session $session
+     *
      * @return bool
      */
-    public function execute(Session $session): bool {
+    public function execute(Session $session): bool
+    {
         /** @var string $pair */
         $pair = $session->getPair();
 
@@ -49,7 +49,7 @@ class MakeSellOrderSession implements UpdateSessionWithExchangeOrderInterface, E
 
         $ticker = $this->exchangeGetTicker->getTicker($pair);
 
-        if(self::doIPlaceAnOrder($priceBuyed, $ticker->getLast())) {
+        if (self::doIPlaceAnOrder($priceBuyed, $ticker->getLast())) {
             $uuid = $this->exchangeMakeSellOrder->makeSellOrder($session, $quantity, $ticker->getLast());
             $this->updateSessionWithExchangeOrder($session, $uuid);
 
@@ -59,13 +59,14 @@ class MakeSellOrderSession implements UpdateSessionWithExchangeOrderInterface, E
         return false;
     }
 
-    private static function doIPlaceAnOrder(float $buyedPrice, float $actualPrice): bool {
+    private static function doIPlaceAnOrder(float $buyedPrice, float $actualPrice): bool
+    {
         $percent = ($actualPrice / $buyedPrice - 1) * 100;
 
         return $percent >= $_ENV['MIN_GAIN_PERCENT_TO_SELL'] || $percent < $_ENV['MAX_LOSE_PERCENT_TO_SELL'];
     }
 
-    function updateSessionWithExchangeOrder(Session $session, string $orderUuid): void
+    public function updateSessionWithExchangeOrder(Session $session, string $orderUuid): void
     {
         $this->em->persist($session
             ->setStatus(SessionStatusEnum::Selling)

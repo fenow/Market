@@ -3,7 +3,6 @@
 namespace App\Entity\Traits;
 
 use Ramsey\Uuid\UuidInterface;
-use Ramsey\Uuid\Doctrine\UuidGenerator;
 
 trait EntityIdTrait
 {

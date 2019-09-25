@@ -1,7 +1,6 @@
 <?php
 
-
-Namespace App\Command;
+namespace App\Command;
 
 use App\Domain\Api\Exceptions\ApiMethodMissing;
 use App\Domain\Api\Exceptions\ApiUrlMissing;
@@ -31,15 +30,17 @@ class CheckOpportunityCommand extends Command
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|void|null
+     *
      * @throws ApiMethodMissing
      * @throws ApiUrlMissing
      * @throws UnknownExchange
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        echo date('Y-m-d H:i:s') . ' - ' . $this->getPotentialInterest->get() . "\n";
+        echo date('Y-m-d H:i:s').' - '.$this->getPotentialInterest->get()."\n";
     }
 }

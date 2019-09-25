@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Domain\TradingView\Opportunity;
-
 
 use App\Domain\Api\AbstractApiCall;
 use App\Domain\Api\Enum\ApiInputEnum;
@@ -16,13 +14,12 @@ use App\Repository\SessionRepository;
 use Symfony\Component\HttpClient\HttpClient;
 use App\Domain\Api\Exceptions\ApiMethodMissing;
 use App\Domain\Api\Exceptions\ApiUrlMissing;
-use \Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class GetOpportunity extends AbstractApiCall
 {
-
     /**
-     * @var HttpClientInterface $httpClient
+     * @var HttpClientInterface
      */
     protected $httpClient;
 
@@ -49,15 +46,17 @@ class GetOpportunity extends AbstractApiCall
 
     /**
      * @return string
+     *
      * @throws ApiMethodMissing
      * @throws ApiUrlMissing
      * @throws UnknownExchange
      */
-    public function get() {
+    public function get()
+    {
         try {
             $results = $this->callApi();
 
-            if(isset($results->data) && \count($results->data) > 0) {
+            if (isset($results->data) && \count($results->data) > 0) {
                 foreach ($results->data as $result) {
                     $body = $result->d;
 
@@ -66,14 +65,14 @@ class GetOpportunity extends AbstractApiCall
 
                     $currentlyTradingList = $this->getCurrentlyTradingList();
 
-                    if(!in_array($pair, $currentlyTradingList)) {
+                    if (!in_array($pair, $currentlyTradingList)) {
                         $price = $body[2];
                         $oneMinuteChange = $body[3];
                         $fiveMinuteChange = $body[4];
                         $fifteenMinuteChange = $body[5];
                         $onHourChange = $body[6];
                         //if($oneMinuteChange > $fiveMinuteChange) {
-                            $this->createSession->create($market, $pair, $price);
+                        $this->createSession->create($market, $pair, $price);
                         //}
                     }
                 }
@@ -91,12 +90,14 @@ class GetOpportunity extends AbstractApiCall
 
     /**
      * @return array
+     *
      * @throws TooManyTradeInProgress
      */
-    private function getCurrentlyTradingList() {
+    private function getCurrentlyTradingList()
+    {
         $currentlyTradingList = $this->sessionRepository->getPairCurrentlyTrading();
 
-        if(\count($currentlyTradingList) >= $_ENV['MAX_TRADING_PROGRESS']) {
+        if (\count($currentlyTradingList) >= $_ENV['MAX_TRADING_PROGRESS']) {
             throw new TooManyTradeInProgress();
         }
 
@@ -105,87 +106,73 @@ class GetOpportunity extends AbstractApiCall
 
     /**
      * @return mixed|string
+     *
      * @throws ApiError
      * @throws ApiMethodMissing
      * @throws ApiUrlMissing
      */
-    private function callApi() {
+    private function callApi()
+    {
         $options = [
-                'json' => array (
-                    'filter' =>
-                        array (
-                            0 =>
-                                array (
+                'json' => [
+                    'filter' => [
+                            0 => [
                                     'left' => 'Volatility.D',
                                     'operation' => 'nempty',
-                                ),
-                            1 =>
-                                array (
+                                ],
+                            1 => [
                                     'left' => 'exchange',
                                     'operation' => 'equal',
                                     'right' => 'BITTREX',
-                                ),
-                            2 =>
-                                array (
+                                ],
+                            2 => [
                                     'left' => 'volume',
                                     'operation' => 'egreater',
                                     'right' => 1000000,
-                                ),
-                            3 =>
-                                array (
+                                ],
+                            3 => [
                                     'left' => 'change',
                                     'operation' => 'greater',
                                     'right' => 1,
-                                ),
-                            4 =>
-                                array (
+                                ],
+                            4 => [
                                     'left' => 'change|1',
                                     'operation' => 'greater',
                                     'right' => 0,
-                                ),
-                            5 =>
-                                array (
+                                ],
+                            5 => [
                                     'left' => 'change|5',
                                     'operation' => 'greater',
                                     'right' => 0,
-                                ),
-                            6 =>
-                                array (
+                                ],
+                            6 => [
                                     'left' => 'Volatility.D',
                                     'operation' => 'greater',
                                     'right' => 15,
-                                ),
-                            7 =>
-                                array (
+                                ],
+                            7 => [
                                     'left' => 'BBPower',
                                     'operation' => 'greater',
                                     'right' => 1.0E-6,
-                                ),
-                            8 =>
-                                array (
+                                ],
+                            8 => [
                                     'left' => 'name,description',
                                     'operation' => 'match',
                                     'right' => 'btc',
-                                ),
-                        ),
-                    'options' =>
-                        array (
+                                ],
+                        ],
+                    'options' => [
                             'lang' => 'fr',
-                        ),
-                    'symbols' =>
-                        array (
-                            'query' =>
-                                array (
-                                    'types' =>
-                                        array (
-                                        ),
-                                ),
-                            'tickers' =>
-                                array (
-                                ),
-                        ),
-                    'columns' =>
-                        array (
+                        ],
+                    'symbols' => [
+                            'query' => [
+                                    'types' => [
+                                        ],
+                                ],
+                            'tickers' => [
+                                ],
+                        ],
+                    'columns' => [
                             0 => 'name',
                             1 => 'exchange',
                             2 => 'close',
@@ -201,18 +188,16 @@ class GetOpportunity extends AbstractApiCall
                             12 => 'minmov',
                             13 => 'fractional',
                             14 => 'minmove2',
-                        ),
-                    'sort' =>
-                        array (
+                        ],
+                    'sort' => [
                             'sortBy' => 'Volatility.D',
                             'sortOrder' => 'desc',
-                        ),
-                    'range' =>
-                        array (
+                        ],
+                    'range' => [
                             0 => 0,
                             1 => 150,
-                        ),
-                )
+                        ],
+                ],
             ];
 
         return $this->call($options, ApiInputEnum::JSON);

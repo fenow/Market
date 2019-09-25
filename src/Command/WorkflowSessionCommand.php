@@ -1,7 +1,6 @@
 <?php
 
-
-Namespace App\Command;
+namespace App\Command;
 
 use App\Domain\Session\Workflows\SessionWorkflow;
 use App\Entity\Session;
@@ -24,7 +23,7 @@ class WorkflowSessionCommand extends Command
     public function __construct(SessionRepository $sessionRepository, SessionWorkflow $sessionWorkflow)
     {
         $this->sessionRepository = $sessionRepository;
-        $this->sessionWorkflow =  $sessionWorkflow;
+        $this->sessionWorkflow = $sessionWorkflow;
 
         parent::__construct();
     }

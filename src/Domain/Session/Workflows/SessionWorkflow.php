@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Domain\Session\Workflows;
 
 use App\Domain\Session\Interfaces\ExecuteFlow;
@@ -22,16 +21,18 @@ class SessionWorkflow
     const SESSION_ORDER_SOLD = 'session_order_sold';
 
     /** @var Workflow $workflow */
-    protected  $workflow;
+    protected $workflow;
 
     /** @var ContainerInterface $container */
     protected $container;
 
     /**
      * SessionWorkflow constructor.
+     *
      * @param ContainerInterface $container
      */
-    public function __construct(ContainerInterface $container) {
+    public function __construct(ContainerInterface $container)
+    {
         $this->container = $container;
 
         $definitionBuilder = new DefinitionBuilder();
@@ -51,9 +52,11 @@ class SessionWorkflow
 
     /**
      * @param Session $session
+     *
      * @return bool
      */
-    public function run(Session $session): bool {
+    public function run(Session $session): bool
+    {
         $registry = new Registry();
         $registry->addWorkflow($this->workflow, new InstanceOfSupportStrategy(Session::class));
 
@@ -68,10 +71,12 @@ class SessionWorkflow
 
     /**
      * @param Session $session
-     * @param string $nextStep
+     * @param string  $nextStep
+     *
      * @return bool
      */
-    private function nextStep(Session $session, string $nextStep): bool {
+    private function nextStep(Session $session, string $nextStep): bool
+    {
         /** @var string $market */
         $market = $session->getMarket();
 

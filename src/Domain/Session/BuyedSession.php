@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Domain\Session;
 
 use App\Domain\Exchange\Interfaces\ExchangeGetOrderInterface;
@@ -25,12 +24,14 @@ class BuyedSession implements ExecuteFlow
 
     /**
      * @param Session $session
+     *
      * @return bool
      */
-    public function execute(Session $session): bool {
+    public function execute(Session $session): bool
+    {
         $orderId = $session->getMarketBuyOrderId();
 
-        if(!is_null($orderId)){
+        if (!is_null($orderId)) {
             $order = $this->exchangeGetOrder->getOrder($orderId);
 
             if (!is_null($order->getClosedAt())) {

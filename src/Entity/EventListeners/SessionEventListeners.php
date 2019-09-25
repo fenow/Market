@@ -9,9 +9,9 @@ use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 class SessionEventListeners
 {
     /**
-     * @var CreateSessionLog $sessionLog
+     * @var CreateSessionLog
      */
-    protected  $sessionLog;
+    protected $sessionLog;
 
     public function __construct(CreateSessionLog $createSessionLog)
     {

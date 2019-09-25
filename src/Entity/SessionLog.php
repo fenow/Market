@@ -28,7 +28,6 @@ class SessionLog implements EntityIdInterface, EntityTimestampableInterface
      */
     private $status;
 
-
     public function getSession(): ?Session
     {
         return $this->session;

@@ -1,7 +1,6 @@
 <?php
 
-
-Namespace App\Command;
+namespace App\Command;
 
 use App\Domain\Session\CreateSession;
 use Symfony\Component\Console\Command\Command;

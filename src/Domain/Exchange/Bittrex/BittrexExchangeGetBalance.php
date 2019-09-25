@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Domain\Exchange\Bittrex;
 
 use App\Domain\Api\AbstractApiCallAuthenticated;
@@ -13,7 +12,6 @@ use App\Domain\Exchange\Bittrex\Traits\SetExchangeAuthenticateTrait;
 use App\Domain\Exchange\Interfaces\ExchangeGetBalanceInterface;
 use App\Domain\Exchange\Models\Balance;
 
-
 class BittrexExchangeGetBalance extends AbstractApiCallAuthenticated implements ExchangeGetBalanceInterface
 {
     use SetExchangeAuthenticateTrait;
@@ -23,7 +21,9 @@ class BittrexExchangeGetBalance extends AbstractApiCallAuthenticated implements 
 
     /**
      * @param string $currency
+     *
      * @return Balance
+     *
      * @throws ApiError
      * @throws ApiMethodMissing
      * @throws ApiUrlMissing
@@ -31,9 +31,9 @@ class BittrexExchangeGetBalance extends AbstractApiCallAuthenticated implements 
      */
     public function getBalance(string $currency): Balance
     {
-        $content = $this->call(['query'=>['currency'=>$currency]], ApiInputEnum::JSON);
+        $content = $this->call(['query' => ['currency' => $currency]], ApiInputEnum::JSON);
 
-        if(isset($content->success) && true === $content->success && isset($content->result)) {
+        if (isset($content->success) && true === $content->success && isset($content->result)) {
             return new Balance(
                 $content->result->Currency,
                 $content->result->Balance,

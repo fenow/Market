@@ -1,7 +1,6 @@
 <?php
 
-
-Namespace App\Command;
+namespace App\Command;
 
 use App\Domain\Exchange\ExchangeHelpers;
 use App\Domain\Exchange\Interfaces\ExchangeGetTickerInterface;
@@ -15,7 +14,6 @@ class GetTickerCommand extends Command
     // the name of the command (the part after "bin/console")
     protected static $defaultName = 'app:get-ticker';
 
-
     public function configure()
     {
         $this
@@ -27,14 +25,13 @@ class GetTickerCommand extends Command
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|void|null
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
-
         /** @var string $exchange */
         $exchange = $input->getArgument('Exchange');
 

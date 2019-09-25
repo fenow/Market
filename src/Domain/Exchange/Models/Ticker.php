@@ -17,7 +17,7 @@ class Ticker
     {
         $this->bid = $bid;
         $this->ask = $ask;
-        $this->last= $last;
+        $this->last = $last;
     }
 
     /**

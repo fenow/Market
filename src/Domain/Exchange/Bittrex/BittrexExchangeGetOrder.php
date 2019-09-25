@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Domain\Exchange\Bittrex;
-
 
 use App\Domain\Api\AbstractApiCallAuthenticated;
 use App\Domain\Api\Enum\ApiInputEnum;
@@ -24,7 +22,9 @@ class BittrexExchangeGetOrder extends AbstractApiCallAuthenticated implements Ex
 
     /**
      * @param string $exchangeOrderId
+     *
      * @return Order
+     *
      * @throws ApiEchangeAuthenticateMissing
      * @throws ApiError
      * @throws ApiMethodMissing
@@ -33,9 +33,9 @@ class BittrexExchangeGetOrder extends AbstractApiCallAuthenticated implements Ex
      */
     public function getOrder(string $exchangeOrderId): Order
     {
-        $content = $this->call(['query'=>['uuid'=>$exchangeOrderId]], ApiInputEnum::JSON);
+        $content = $this->call(['query' => ['uuid' => $exchangeOrderId]], ApiInputEnum::JSON);
 
-        if(isset($content->success) && true === $content->success && isset($content->result)) {
+        if (isset($content->success) && true === $content->success && isset($content->result)) {
             $result = $content->result;
 
             return (new Order())
@@ -54,10 +54,12 @@ class BittrexExchangeGetOrder extends AbstractApiCallAuthenticated implements Ex
 
     /**
      * @param string $type
+     *
      * @return string
      */
-    private static function getOrderType(string $type) {
-        switch($type) {
+    private static function getOrderType(string $type)
+    {
+        switch ($type) {
             case 'LIMIT_BUY':
                 return ExchangeOrderTypeEnum::BUY;
 

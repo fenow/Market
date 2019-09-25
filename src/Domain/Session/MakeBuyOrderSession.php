@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Domain\Session;
-
 
 use App\Domain\Exchange\Exceptions\UnknownExchange;
 use App\Domain\Exchange\ExchangeHelpers;
@@ -43,11 +41,13 @@ class MakeBuyOrderSession implements UpdateSessionWithExchangeOrderInterface, Ex
 
     /**
      * @param Session $session
+     *
      * @return bool
+     *
      * @throws UnknownExchange
      */
-    public function execute(Session $session): bool {
-
+    public function execute(Session $session): bool
+    {
         /** @var string $pair */
         $pair = $session->getPair();
 
@@ -62,11 +62,12 @@ class MakeBuyOrderSession implements UpdateSessionWithExchangeOrderInterface, Ex
         $price = $ticker->getLast();
         $quantity = self::getQuantity($balance->getAvailable(), $price);
 
-        if($quantity > 0) {
+        if ($quantity > 0) {
             $uuid = $this->exchangeMakeBuyOrder->makeBuyOrder($session, $quantity, $price);
 
-            if(!empty($uuid)) {
+            if (!empty($uuid)) {
                 $this->updateSessionWithExchangeOrder($session, $uuid);
+
                 return true;
             }
         } else {
@@ -77,7 +78,8 @@ class MakeBuyOrderSession implements UpdateSessionWithExchangeOrderInterface, Ex
         return false;
     }
 
-    private static function getQuantity(float $available, float $price): int {
+    private static function getQuantity(float $available, float $price): int
+    {
         /** @var int $quantity */
         $quantity = $available > $_ENV['NB_BTC_BY_TRADE'] ?
             floor($_ENV['NB_BTC_BY_TRADE'] / $price) :

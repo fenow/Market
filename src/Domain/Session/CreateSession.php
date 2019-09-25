@@ -1,9 +1,7 @@
 <?php
 
-Namespace App\Domain\Session;
+namespace App\Domain\Session;
 
-use App\Domain\SessionLog\CreateSessionLog;
-use App\Entity\Enum\SessionStatusEnum;
 use App\Entity\Session;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -17,7 +15,8 @@ class CreateSession
         $this->em = $em;
     }
 
-    public function create(string $market, string $pair, float $price, bool $flush = true) {
+    public function create(string $market, string $pair, float $price, bool $flush = true)
+    {
         $session = (new Session())
             ->setMarket($market)
             ->setPair($pair)
@@ -27,7 +26,7 @@ class CreateSession
 
         $this->em->persist($session);
 
-        if(true === $flush) {
+        if (true === $flush) {
             $this->em->flush();
         }
     }

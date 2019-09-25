@@ -13,7 +13,7 @@ tests: ## Run Tests
 	vendor/phpunit/phpunit/phpunit --verbose
 
 fixer: ## Run Php-cs-fixer
-	./bin/php-cs-fixer fix ./src
+	vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix ./src
 
 
 .PHONY: precommit tests stan fixer

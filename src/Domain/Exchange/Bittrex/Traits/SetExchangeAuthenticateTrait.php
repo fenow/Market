@@ -1,14 +1,12 @@
 <?php
 
-
 namespace App\Domain\Exchange\Bittrex\Traits;
-
 
 use App\Domain\Exchange\Bittrex\BittrexAuthenticate;
 
-Trait SetExchangeAuthenticateTrait
+trait SetExchangeAuthenticateTrait
 {
-    function setExchangeAuthenticate()
+    public function setExchangeAuthenticate()
     {
         $this->exchangeAuthenticate = new BittrexAuthenticate();
     }

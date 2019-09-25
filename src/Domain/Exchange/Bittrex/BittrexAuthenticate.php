@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Domain\Exchange\Bittrex;
 
 use App\Domain\Exchange\Interfaces\ExchangeAuthenticateInterface;
@@ -24,24 +23,26 @@ class BittrexAuthenticate implements ExchangeAuthenticateInterface
 
     /**
      * @param string $url
-     * @param array $params
+     * @param array  $params
+     *
      * @return string
      */
     public function generateSign(string $url, array $params = []): string
     {
-        if(is_array($params) && count($params) > 0) {
-            $url .= '?' . http_build_query($params);
+        if (is_array($params) && count($params) > 0) {
+            $url .= '?'.http_build_query($params);
         }
 
         $sign = hash_hmac('sha512', $url, $this->apiSecret);
+
         return $sign;
     }
 
     /***
      * @return mixed|string
      */
-    public function getApiKey() {
+    public function getApiKey()
+    {
         return $this->apiKey;
     }
-
 }

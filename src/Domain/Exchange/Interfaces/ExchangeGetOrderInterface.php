@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Domain\Exchange\Interfaces;
-
 
 use App\Domain\Exchange\Models\Order;
 

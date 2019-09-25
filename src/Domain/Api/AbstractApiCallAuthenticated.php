@@ -9,12 +9,6 @@ use App\Domain\Api\Exceptions\ApiMethodMissing;
 use App\Domain\Api\Exceptions\ApiUrlMissing;
 use App\Domain\Api\Interfaces\ApiCallAuthenticatedInterface;
 use App\Domain\Exchange\Interfaces\ExchangeAuthenticateInterface;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 abstract class AbstractApiCallAuthenticated extends AbstractApiCall implements ApiCallAuthenticatedInterface
 {
@@ -29,9 +23,11 @@ abstract class AbstractApiCallAuthenticated extends AbstractApiCall implements A
     }
 
     /**
-     * @param array $options
+     * @param array  $options
      * @param string $outputFormat
+     *
      * @return mixed|string
+     *
      * @throws ApiEchangeAuthenticateMissing
      * @throws ApiError
      * @throws ApiMethodMissing
@@ -39,11 +35,11 @@ abstract class AbstractApiCallAuthenticated extends AbstractApiCall implements A
      */
     public function call(array $options = [], string $outputFormat = ApiInputEnum::RAW)
     {
-        if(is_null($this->url)) {
+        if (is_null($this->url)) {
             throw new ApiUrlMissing();
         }
 
-        if(is_null($this->exchangeAuthenticate)) {
+        if (is_null($this->exchangeAuthenticate)) {
             throw new ApiEchangeAuthenticateMissing();
         }
 

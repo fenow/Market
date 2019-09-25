@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Domain\Session;
 
 use App\Domain\Exchange\Interfaces\ExchangeGetOrderInterface;
@@ -25,15 +24,17 @@ class SoldSession implements ExecuteFlow
 
     /**
      * @param Session $session
+     *
      * @return bool
      */
-    public function execute(Session $session): bool {
+    public function execute(Session $session): bool
+    {
         /** @var string $orderId */
         $orderId = $session->getMarketSellOrderId();
 
         $order = $this->exchangeGetOrder->getOrder($orderId);
 
-        if(!is_null($order->getClosedAt())) {
+        if (!is_null($order->getClosedAt())) {
             $session
                 ->setStatus(SessionStatusEnum::Sold)
                 ->setPriceSold($order->getPricePerUnit())

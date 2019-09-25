@@ -1,13 +1,13 @@
 <?php
 
-Namespace App\Domain\SessionLog;
+namespace App\Domain\SessionLog;
 
 use App\Entity\Session;
 use App\Entity\SessionLog;
 use Doctrine\ORM\EntityManagerInterface;
 
-class CreateSessionLog {
-
+class CreateSessionLog
+{
     /** @var EntityManagerInterface $em */
     protected $em;
 
@@ -16,7 +16,8 @@ class CreateSessionLog {
         $this->em = $em;
     }
 
-    public function create(Session $session, bool $flush = true) {
+    public function create(Session $session, bool $flush = true)
+    {
         /** @var string $status */
         $status = $session->getStatus();
 
@@ -27,7 +28,7 @@ class CreateSessionLog {
 
         $this->em->persist($sessionLog);
 
-        if(true === $flush) {
+        if (true === $flush) {
             $this->em->flush();
         }
     }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Domain\Exchange\Models;
-
 
 class Order
 {
@@ -43,6 +41,7 @@ class Order
 
     /**
      * @param string $orderUuid
+     *
      * @return Order
      */
     public function setOrderUuid(string $orderUuid): self
@@ -62,6 +61,7 @@ class Order
 
     /**
      * @param string $pair
+     *
      * @return Order
      */
     public function setPair(string $pair): self
@@ -81,6 +81,7 @@ class Order
 
     /**
      * @param string $type
+     *
      * @return Order
      */
     public function setType(string $type): self
@@ -98,9 +99,9 @@ class Order
         return $this->quantity;
     }
 
-
     /**
      * @param float $quantity
+     *
      * @return Order
      */
     public function setQuantity(float $quantity): self
@@ -120,6 +121,7 @@ class Order
 
     /**
      * @param float $commissionPaid
+     *
      * @return Order
      */
     public function setCommissionPaid(float $commissionPaid): self
@@ -139,6 +141,7 @@ class Order
 
     /**
      * @param float $price
+     *
      * @return Order
      */
     public function setPrice(float $price): self
@@ -158,6 +161,7 @@ class Order
 
     /**
      * @param float $pricePerUnit
+     *
      * @return Order
      */
     public function setPricePerUnit(float $pricePerUnit): self
@@ -177,6 +181,7 @@ class Order
 
     /**
      * @param \DateTime $createdAt
+     *
      * @return Order
      */
     public function setCreatedAt(\DateTime $createdAt): self
@@ -196,6 +201,7 @@ class Order
 
     /**
      * @param \DateTime|null $closedAt
+     *
      * @return Order
      */
     public function setClosedAt(?\DateTime $closedAt): self

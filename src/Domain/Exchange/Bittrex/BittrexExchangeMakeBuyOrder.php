@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Domain\Exchange\Bittrex;
 
 use App\Domain\Api\AbstractApiCallAuthenticated;
@@ -22,26 +21,29 @@ class BittrexExchangeMakeBuyOrder extends AbstractApiCallAuthenticated implement
 
     /**
      * @param Session $session
-     * @param float $quantity
-     * @param float $rate
+     * @param float   $quantity
+     * @param float   $rate
+     *
      * @return string
+     *
      * @throws ApiEchangeAuthenticateMissing
      * @throws ApiError
      * @throws ApiMethodMissing
      * @throws ApiUrlMissing
      */
-    public function makeBuyOrder(Session $session, float $quantity, float $rate): string {
-        $content = $this->call(['query'=>[
+    public function makeBuyOrder(Session $session, float $quantity, float $rate): string
+    {
+        $content = $this->call(['query' => [
             'market' => $session->getPair(),
             'quantity' => $quantity,
-            'rate' => $rate
+            'rate' => $rate,
         ]], ApiInputEnum::JSON);
 
-        if(isset($content->success) && true === $content->success && isset($content->result)) {
+        if (isset($content->success) && true === $content->success && isset($content->result)) {
             return $content->result->uuid;
         }
 
-        if(isset($content->message) && $content->message === 'MIN_TRADE_REQUIREMENT_NOT_MET') {
+        if (isset($content->message) && 'MIN_TRADE_REQUIREMENT_NOT_MET' === $content->message) {
             return '';
         }
 

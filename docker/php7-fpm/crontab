@@ -1,0 +1,2 @@
+# App crons
+* * * * * /usr/local/bin/php /var/www/symfony/bin/console --env=prod app:check-opportunity >>/var/www/symfony/logs/cron/check-opportunity 2>&1

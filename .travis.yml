@@ -4,4 +4,3 @@ php:
 before_script:
   - cp env.dist .env
   - composer install
-  - bin/console do:mi:mi

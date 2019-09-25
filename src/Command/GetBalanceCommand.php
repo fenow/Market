@@ -34,11 +34,17 @@ class GetBalanceCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $className = ExchangeHelpers::getClassName($input->getArgument('Exchange'), 'GetBalance');
+        /** @var string $exchange */
+        $exchange = $input->getArgument('Exchange');
+
+        /** @var string $currency */
+        $currency = $input->getArgument('Currency');
+
+        $className = ExchangeHelpers::getClassName($exchange, 'GetBalance');
 
         /** @var ExchangeGetBalanceInterface $getBalance */
         $getBalance = new $className();
 
-        dump($getBalance->getBalance($input->getArgument('Currency')));
+        dump($getBalance->getBalance($currency));
     }
 }

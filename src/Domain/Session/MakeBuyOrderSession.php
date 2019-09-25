@@ -9,12 +9,13 @@ use App\Domain\Exchange\ExchangeHelpers;
 use App\Domain\Exchange\Interfaces\ExchangeGetBalanceInterface;
 use App\Domain\Exchange\Interfaces\ExchangeGetTickerInterface;
 use App\Domain\Exchange\Interfaces\ExchangeMakeBuyOrderInterface;
+use App\Domain\Session\Interfaces\ExecuteFlow;
 use App\Domain\Session\Interfaces\UpdateSessionWithExchangeOrderInterface;
 use App\Entity\Enum\SessionStatusEnum;
 use App\Entity\Session;
 use Doctrine\ORM\EntityManagerInterface;
 
-class MakeBuyOrderSession implements UpdateSessionWithExchangeOrderInterface
+class MakeBuyOrderSession implements UpdateSessionWithExchangeOrderInterface, ExecuteFlow
 {
     /** ExchangeGetTickerInterface $exchangeGetTicker */
     protected $exchangeGetTicker;
@@ -46,11 +47,18 @@ class MakeBuyOrderSession implements UpdateSessionWithExchangeOrderInterface
      * @throws UnknownExchange
      */
     public function execute(Session $session): bool {
+
+        /** @var string $pair */
+        $pair = $session->getPair();
+
+        /** @var string $market */
+        $market = $session->getMarket();
+
         $balance = $this->exchangeGetBalance->getBalance(
-            ExchangeHelpers::getCurrencyByExchange($session->getPair(), $session->getMarket())
+            ExchangeHelpers::getCurrencyByExchange($pair, $market)
         );
 
-        $ticker = $this->exchangeGetTicker->getTicker($session->getPair());
+        $ticker = $this->exchangeGetTicker->getTicker($pair);
         $price = $ticker->getLast();
         $quantity = self::getQuantity($balance->getAvailable(), $price);
 
@@ -70,6 +78,7 @@ class MakeBuyOrderSession implements UpdateSessionWithExchangeOrderInterface
     }
 
     private static function getQuantity(float $available, float $price): int {
+        /** @var int $quantity */
         $quantity = $available > $_ENV['NB_BTC_BY_TRADE'] ?
             floor($_ENV['NB_BTC_BY_TRADE'] / $price) :
             floor($available / $price);

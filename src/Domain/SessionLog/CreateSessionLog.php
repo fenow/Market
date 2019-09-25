@@ -17,9 +17,12 @@ class CreateSessionLog {
     }
 
     public function create(Session $session, bool $flush = true) {
+        /** @var string $status */
+        $status = $session->getStatus();
+
         $sessionLog = (new SessionLog())
             ->setSession($session)
-            ->setStatus($session->getStatus())
+            ->setStatus($status)
         ;
 
         $this->em->persist($sessionLog);

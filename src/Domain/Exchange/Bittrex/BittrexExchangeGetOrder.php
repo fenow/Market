@@ -35,7 +35,7 @@ class BittrexExchangeGetOrder extends AbstractApiCallAuthenticated implements Ex
     {
         $content = $this->call(['query'=>['uuid'=>$exchangeOrderId]], ApiInputEnum::JSON);
 
-        if(isset($content->success) && true === $content->success) {
+        if(isset($content->success) && true === $content->success && isset($content->result)) {
             $result = $content->result;
 
             return (new Order())

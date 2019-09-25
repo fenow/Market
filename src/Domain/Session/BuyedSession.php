@@ -4,11 +4,12 @@
 namespace App\Domain\Session;
 
 use App\Domain\Exchange\Interfaces\ExchangeGetOrderInterface;
+use App\Domain\Session\Interfaces\ExecuteFlow;
 use App\Entity\Enum\SessionStatusEnum;
 use App\Entity\Session;
 use Doctrine\ORM\EntityManagerInterface;
 
-class BuyedSession
+class BuyedSession implements ExecuteFlow
 {
     /** @var ExchangeGetOrderInterface $exchangeGetOrder */
     protected $exchangeGetOrder;
@@ -27,20 +28,23 @@ class BuyedSession
      * @return bool
      */
     public function execute(Session $session): bool {
-        $order = $this->exchangeGetOrder->getOrder($session->getMarketBuyOrderId());
+        $orderId = $session->getMarketBuyOrderId();
 
-        if($order->getClosedAt()) {
-            $session
-                ->setStatus(SessionStatusEnum::Buyed)
-                ->setPriceBuyed($order->getPricePerUnit())
-                ->setQuantityBuyed($order->getQuantity())
-                ->setBuyedAt($order->getClosedAt())
-            ;
+        if(!is_null($orderId)){
+            $order = $this->exchangeGetOrder->getOrder($orderId);
 
-            $this->em->persist($session);
-            $this->em->flush();
+            if (!is_null($order->getClosedAt())) {
+                $session
+                    ->setStatus(SessionStatusEnum::Buyed)
+                    ->setPriceBuyed($order->getPricePerUnit())
+                    ->setQuantityBuyed($order->getQuantity())
+                    ->setBuyedAt($order->getClosedAt());
 
-            return true;
+                $this->em->persist($session);
+                $this->em->flush();
+
+                return true;
+            }
         }
 
         return false;

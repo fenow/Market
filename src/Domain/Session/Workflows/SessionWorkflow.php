@@ -3,6 +3,7 @@
 
 namespace App\Domain\Session\Workflows;
 
+use App\Domain\Session\Interfaces\ExecuteFlow;
 use App\Entity\Enum\SessionStatusEnum;
 use App\Entity\Session;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -71,7 +72,14 @@ class SessionWorkflow
      * @return bool
      */
     private function nextStep(Session $session, string $nextStep): bool {
-        $service = sprintf('app.%s.%s.order', strtolower($session->getMarket()), $nextStep);
-        return $this->container->get($service)->execute($session);
+        /** @var string $market */
+        $market = $session->getMarket();
+
+        $serviceName = sprintf('app.%s.%s.order', strtolower($market), $nextStep);
+
+        /** @var ExecuteFlow $service */
+        $service = $this->container->get($serviceName);
+
+        return $service->execute($session);
     }
 }

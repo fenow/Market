@@ -35,11 +35,17 @@ class GetOrderCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $className = ExchangeHelpers::getClassName($input->getArgument('Exchange'), 'GetOrder');
+        /** @var string $exchange */
+        $exchange = $input->getArgument('Exchange');
+
+        /** @var string $uuid */
+        $uuid = $input->getArgument('Uuid');
+
+        $className = ExchangeHelpers::getClassName($exchange, 'GetOrder');
 
         /** @var ExchangeGetOrderInterface $getOrder */
         $getOrder = new $className();
 
-        dump($getOrder->getOrder($input->getArgument('Uuid')));
+        dump($getOrder->getOrder($uuid));
     }
 }

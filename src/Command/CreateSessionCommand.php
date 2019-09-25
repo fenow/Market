@@ -37,11 +37,19 @@ class CreateSessionCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /** @var string $market */
+        $market = $input->getArgument('market');
+
+        /** @var float $price */
+        $price = $input->getArgument('price');
+
+        /** @var string $pair */
+        $pair = $input->getArgument('pair');
 
         $this->createSession->create(
-            $input->getArgument('market'),
-            $input->getArgument('pair'),
-            $input->getArgument('price')
+            $market,
+            $pair,
+            $price
         );
     }
 }

@@ -104,10 +104,10 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
     }
 
     /**
-     * @param $priceWatched
+     * @param float $priceWatched
      * @return Session
      */
-    public function setPriceWatched($priceWatched): self
+    public function setPriceWatched(float $priceWatched): self
     {
         $this->priceWatched = $priceWatched;
 
@@ -123,10 +123,10 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
     }
 
     /**
-     * @param $watchedAt
+     * @param \DateTime $watchedAt
      * @return Session
      */
-    public function setWatchedAt($watchedAt): self
+    public function setWatchedAt(\DateTime $watchedAt): self
     {
         $this->watchedAt = $watchedAt;
 
@@ -319,10 +319,10 @@ class Session implements EntityIdInterface, EntityTimestampableInterface
     }
 
     /**
-     * @param $quantityBuyed
+     * @param float $quantityBuyed
      * @return Session
      */
-    public function setQuantityBuyed($quantityBuyed): self
+    public function setQuantityBuyed(float $quantityBuyed): self
     {
         $this->quantityBuyed = $quantityBuyed;
 

@@ -33,7 +33,7 @@ class BittrexExchangeGetBalance extends AbstractApiCallAuthenticated implements 
     {
         $content = $this->call(['query'=>['currency'=>$currency]], ApiInputEnum::JSON);
 
-        if(isset($content->success) && true === $content->success) {
+        if(isset($content->success) && true === $content->success && isset($content->result)) {
             return new Balance(
                 $content->result->Currency,
                 $content->result->Balance,

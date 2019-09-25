@@ -189,7 +189,7 @@ class Order
     /**
      * @return \DateTime|null
      */
-    public function getClosedAt(): \DateTime
+    public function getClosedAt(): ?\DateTime
     {
         return $this->closedAt;
     }
@@ -198,7 +198,7 @@ class Order
      * @param \DateTime|null $closedAt
      * @return Order
      */
-    public function setClosedAt(\DateTime $closedAt): self
+    public function setClosedAt(?\DateTime $closedAt): self
     {
         $this->closedAt = $closedAt;
 

@@ -19,10 +19,10 @@ abstract class AbstractApiCall implements ApiCallInterface
     /** @var HttpClientInterface $httpClient */
     protected $httpClient;
 
-    /** @var string $method */
+    /** @var ?string $method */
     protected $method;
 
-    /** @var string $url */
+    /** @var ?string $url */
     protected $url;
 
     /**

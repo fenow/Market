@@ -805,3 +805,123 @@
 2019-09-25 10:58:04 - NoOpportunity
 2019-09-25 10:59:04 - NoOpportunity
 2019-09-25 11:00:03 - NoOpportunity
+2019-09-25 11:01:04 - NoOpportunity
+2019-09-25 11:02:04 - NoOpportunity
+2019-09-25 11:03:03 - NoOpportunity
+2019-09-25 11:04:03 - NoOpportunity
+2019-09-25 11:05:04 - NoOpportunity
+2019-09-25 11:06:03 - NoOpportunity
+2019-09-25 11:07:02 - NoOpportunity
+2019-09-25 11:08:03 - NoOpportunity
+2019-09-25 11:09:03 - NoOpportunity
+2019-09-25 11:10:02 - NoOpportunity
+2019-09-25 11:11:03 - NoOpportunity
+2019-09-25 11:12:03 - NoOpportunity
+2019-09-25 11:13:03 - NoOpportunity
+2019-09-25 11:14:03 - NoOpportunity
+2019-09-25 11:15:03 - NoOpportunity
+2019-09-25 11:16:02 - NoOpportunity
+2019-09-25 11:17:03 - NoOpportunity
+2019-09-25 11:18:03 - NoOpportunity
+2019-09-25 11:19:03 - NoOpportunity
+2019-09-25 11:20:04 - NoOpportunity
+2019-09-25 11:21:03 - NoOpportunity
+2019-09-25 11:22:02 - NoOpportunity
+2019-09-25 11:23:03 - NoOpportunity
+2019-09-25 11:24:03 - NoOpportunity
+2019-09-25 11:25:03 - NoOpportunity
+2019-09-25 11:26:03 - NoOpportunity
+2019-09-25 11:27:03 - NoOpportunity
+2019-09-25 11:28:03 - NoOpportunity
+2019-09-25 11:29:03 - NoOpportunity
+2019-09-25 11:30:02 - NoOpportunity
+2019-09-25 11:31:03 - NoOpportunity
+2019-09-25 11:32:03 - NoOpportunity
+2019-09-25 11:33:03 - NoOpportunity
+2019-09-25 11:34:03 - NoOpportunity
+2019-09-25 11:35:03 - NoOpportunity
+2019-09-25 11:36:03 - NoOpportunity
+2019-09-25 11:37:03 - NoOpportunity
+2019-09-25 11:38:03 - NoOpportunity
+2019-09-25 11:39:02 - NoOpportunity
+2019-09-25 11:40:03 - NoOpportunity
+2019-09-25 11:41:03 - NoOpportunity
+2019-09-25 11:42:03 - NoOpportunity
+2019-09-25 11:43:04 - NoOpportunity
+2019-09-25 11:44:03 - NoOpportunity
+2019-09-25 11:45:03 - NoOpportunity
+2019-09-25 11:46:03 - NoOpportunity
+2019-09-25 11:47:04 - NoOpportunity
+2019-09-25 11:48:03 - NoOpportunity
+2019-09-25 11:49:03 - NoOpportunity
+2019-09-25 11:50:03 - NoOpportunity
+2019-09-25 11:51:03 - NoOpportunity
+2019-09-25 11:52:03 - NoOpportunity
+2019-09-25 11:53:03 - NoOpportunity
+2019-09-25 11:54:03 - NoOpportunity
+2019-09-25 11:55:03 - NoOpportunity
+2019-09-25 11:56:04 - NoOpportunity
+2019-09-25 11:57:03 - NoOpportunity
+2019-09-25 11:58:04 - NoOpportunity
+2019-09-25 11:59:04 - NoOpportunity
+2019-09-25 12:00:03 - NoOpportunity
+2019-09-25 12:01:02 - NoOpportunity
+2019-09-25 12:02:03 - NoOpportunity
+2019-09-25 12:03:03 - NoOpportunity
+2019-09-25 12:04:03 - NoOpportunity
+2019-09-25 12:05:03 - NoOpportunity
+2019-09-25 12:06:03 - NoOpportunity
+2019-09-25 12:07:02 - NoOpportunity
+2019-09-25 12:08:03 - NoOpportunity
+2019-09-25 12:09:03 - NoOpportunity
+2019-09-25 12:10:03 - NoOpportunity
+2019-09-25 12:11:03 - NoOpportunity
+2019-09-25 12:12:03 - NoOpportunity
+2019-09-25 12:13:03 - NoOpportunity
+2019-09-25 12:14:04 - NoOpportunity
+2019-09-25 12:15:04 - NoOpportunity
+2019-09-25 12:16:04 - NoOpportunity
+2019-09-25 12:17:03 - NoOpportunity
+2019-09-25 12:18:03 - NoOpportunity
+2019-09-25 12:19:03 - NoOpportunity
+2019-09-25 12:20:03 - NoOpportunity
+2019-09-25 12:21:03 - NoOpportunity
+
+Fatal error: Declaration of App\Entity\Session::getCreatedAt(): DateTime must be compatible with App\Entity\Interfaces\EntityTimestampableInterface::getCreatedAt(): DateTimeInterface in /var/www/symfony/src/Entity/Session.php on line 19
+
+Call Stack:
+    0.0022     397112   1. {main}() /var/www/symfony/bin/console:0
+    0.1164    1706296   2. Symfony\Bundle\FrameworkBundle\Console\Application->run() /var/www/symfony/bin/console:42
+    0.1601    2023128   3. Symfony\Bundle\FrameworkBundle\Console\Application->doRun() /var/www/symfony/vendor/symfony/console/Application.php:148
+    1.7874   15007976   4. Symfony\Bundle\FrameworkBundle\Console\Application->doRun() /var/www/symfony/vendor/symfony/framework-bundle/Console/Application.php:73
+    1.7879   15009032   5. Symfony\Bundle\FrameworkBundle\Console\Application->find() /var/www/symfony/vendor/symfony/console/Application.php:236
+    1.7879   15009032   6. Symfony\Bundle\FrameworkBundle\Console\Application->find() /var/www/symfony/vendor/symfony/framework-bundle/Console/Application.php:107
+    1.7887   15017784   7. Symfony\Bundle\FrameworkBundle\Console\Application->get() /var/www/symfony/vendor/symfony/console/Application.php:681
+    1.7887   15017784   8. Symfony\Bundle\FrameworkBundle\Console\Application->get() /var/www/symfony/vendor/symfony/framework-bundle/Console/Application.php:117
+    1.7887   15017784   9. Symfony\Bundle\FrameworkBundle\Console\Application->has() /var/www/symfony/vendor/symfony/console/Application.php:502
+    1.7888   15017784  10. Symfony\Component\Console\CommandLoader\ContainerCommandLoader->get() /var/www/symfony/vendor/symfony/console/Application.php:531
+    1.7888   15017784  11. Symfony\Component\DependencyInjection\Argument\ServiceLocator->get() /var/www/symfony/vendor/symfony/console/CommandLoader/ContainerCommandLoader.php:46
+    1.7888   15017784  12. ContainerNjP95ZR\srcApp_KernelProdContainer->getService() /var/www/symfony/vendor/symfony/dependency-injection/Argument/ServiceLocator.php:40
+    1.7888   15017784  13. ContainerNjP95ZR\srcApp_KernelProdContainer->load() /var/www/symfony/vendor/symfony/dependency-injection/Container.php:433
+    1.7919   15023456  14. require('/var/www/symfony/var/cache/prod/ContainerNjP95ZR/getCheckOpportunityCommandService.php') /var/www/symfony/var/cache/prod/ContainerNjP95ZR/srcApp_KernelProdContainer.php:462
+    1.8128   15069688  15. ContainerNjP95ZR\srcApp_KernelProdContainer->load() /var/www/symfony/var/cache/prod/ContainerNjP95ZR/getCheckOpportunityCommandService.php:15
+    1.8152   15073536  16. require('/var/www/symfony/var/cache/prod/ContainerNjP95ZR/getSessionRepositoryService.php') /var/www/symfony/var/cache/prod/ContainerNjP95ZR/srcApp_KernelProdContainer.php:462
+    1.8297   15086168  17. App\Repository\SessionRepository->__construct() /var/www/symfony/var/cache/prod/ContainerNjP95ZR/getSessionRepositoryService.php:16
+    1.8297   15086168  18. App\Repository\SessionRepository->__construct() /var/www/symfony/src/Repository/SessionRepository.php:20
+    1.8298   15086168  19. Doctrine\Bundle\DoctrineBundle\Registry->getManagerForClass() /var/www/symfony/vendor/doctrine/doctrine-bundle/Repository/ServiceEntityRepository.php:30
+    1.8298   15086280  20. ReflectionClass->__construct() /var/www/symfony/vendor/doctrine/persistence/lib/Doctrine/Common/Persistence/AbstractManagerRegistry.php:166
+    1.8298   15086328  21. spl_autoload_call() /var/www/symfony/vendor/doctrine/persistence/lib/Doctrine/Common/Persistence/AbstractManagerRegistry.php:166
+    1.8298   15086376  22. Composer\Autoload\ClassLoader->loadClass() /var/www/symfony/vendor/doctrine/persistence/lib/Doctrine/Common/Persistence/AbstractManagerRegistry.php:166
+    1.8308   15086472  23. Composer\Autoload\includeFile() /var/www/symfony/vendor/composer/ClassLoader.php:322
+    1.8327   15174960  24. include('/var/www/symfony/src/Entity/Session.php') /var/www/symfony/vendor/composer/ClassLoader.php:444
+
+
+In Session.php line 19:
+                                                                               
+  Compile Error: Declaration of App\Entity\Session::getCreatedAt(): DateTime   
+  must be compatible with App\Entity\Interfaces\EntityTimestampableInterface:  
+  :getCreatedAt(): DateTimeInterface                                           
+                                                                               
+
+2019-09-25 12:23:03 - NoOpportunity
+2019-09-25 12:24:02 - NoOpportunity

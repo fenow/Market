@@ -6,12 +6,13 @@ namespace App\Domain\Session;
 
 use App\Domain\Exchange\Interfaces\ExchangeGetTickerInterface;
 use App\Domain\Exchange\Interfaces\ExchangeMakeSellOrderInterface;
+use App\Domain\Session\Interfaces\ExecuteFlow;
 use App\Domain\Session\Interfaces\UpdateSessionWithExchangeOrderInterface;
 use App\Entity\Enum\SessionStatusEnum;
 use App\Entity\Session;
 use Doctrine\ORM\EntityManagerInterface;
 
-class MakeSellOrderSession implements UpdateSessionWithExchangeOrderInterface
+class MakeSellOrderSession implements UpdateSessionWithExchangeOrderInterface, ExecuteFlow
 {
     /** @var ExchangeGetTickerInterface $exchangeGetTicker */
     protected $exchangeGetTicker;
@@ -37,10 +38,19 @@ class MakeSellOrderSession implements UpdateSessionWithExchangeOrderInterface
      * @return bool
      */
     public function execute(Session $session): bool {
-        $ticker = $this->exchangeGetTicker->getTicker($session->getPair());
+        /** @var string $pair */
+        $pair = $session->getPair();
 
-        if(self::doIPlaceAnOrder($session->getPriceBuyed(), $ticker->getLast())) {
-            $uuid = $this->exchangeMakeSellOrder->makeSellOrder($session, $session->getQuantityBuyed(), $ticker->getLast());
+        /** @var float $quantity */
+        $quantity = $session->getQuantityBuyed();
+
+        /** @var float $priceBuyed */
+        $priceBuyed = $session->getPriceBuyed();
+
+        $ticker = $this->exchangeGetTicker->getTicker($pair);
+
+        if(self::doIPlaceAnOrder($priceBuyed, $ticker->getLast())) {
+            $uuid = $this->exchangeMakeSellOrder->makeSellOrder($session, $quantity, $ticker->getLast());
             $this->updateSessionWithExchangeOrder($session, $uuid);
 
             return true;

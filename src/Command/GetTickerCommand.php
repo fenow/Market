@@ -33,11 +33,19 @@ class GetTickerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $className = ExchangeHelpers::getClassName($input->getArgument('Exchange'), 'GetTicker');
+
+
+        /** @var string $exchange */
+        $exchange = $input->getArgument('Exchange');
+
+        /** @var string $pair */
+        $pair = $input->getArgument('pair');
+
+        $className = ExchangeHelpers::getClassName($exchange, 'GetTicker');
 
         /** @var ExchangeGetTickerInterface $getTicker */
         $getTicker = new $className();
 
-        dump($getTicker->getTicker($input->getArgument('pair')));
+        dump($getTicker->getTicker($pair));
     }
 }

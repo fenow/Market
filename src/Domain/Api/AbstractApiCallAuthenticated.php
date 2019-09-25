@@ -18,7 +18,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 abstract class AbstractApiCallAuthenticated extends AbstractApiCall implements ApiCallAuthenticatedInterface
 {
-    /** @var ExchangeAuthenticateInterface $exchangeAuthenticate */
+    /** @var ?ExchangeAuthenticateInterface $exchangeAuthenticate */
     protected $exchangeAuthenticate;
 
     public function __construct()
@@ -39,6 +39,10 @@ abstract class AbstractApiCallAuthenticated extends AbstractApiCall implements A
      */
     public function call(array $options = [], string $outputFormat = ApiInputEnum::RAW)
     {
+        if(is_null($this->url)) {
+            throw new ApiUrlMissing();
+        }
+
         if(is_null($this->exchangeAuthenticate)) {
             throw new ApiEchangeAuthenticateMissing();
         }

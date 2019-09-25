@@ -29,7 +29,7 @@ class BittrexExchangeGetTicker extends AbstractApiCall implements ExchangeGetTic
     {
         $content = $this->call(['query'=>['market'=>$pair]], ApiInputEnum::JSON);
 
-        if(isset($content->success) && true === $content->success) {
+        if(isset($content->success) && true === $content->success && isset($content->result)) {
             return new Ticker($content->result->Bid, $content->result->Ask, $content->result->Last);
         }
 

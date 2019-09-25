@@ -4,11 +4,12 @@
 namespace App\Domain\Session;
 
 use App\Domain\Exchange\Interfaces\ExchangeGetOrderInterface;
+use App\Domain\Session\Interfaces\ExecuteFlow;
 use App\Entity\Enum\SessionStatusEnum;
 use App\Entity\Session;
 use Doctrine\ORM\EntityManagerInterface;
 
-class SoldSession
+class SoldSession implements ExecuteFlow
 {
     /** @var ExchangeGetOrderInterface $exchangeGetOrder */
     protected $exchangeGetOrder;
@@ -27,9 +28,12 @@ class SoldSession
      * @return bool
      */
     public function execute(Session $session): bool {
-        $order = $this->exchangeGetOrder->getOrder($session->getMarketSellOrderId());
+        /** @var string $orderId */
+        $orderId = $session->getMarketSellOrderId();
 
-        if($order->getClosedAt()) {
+        $order = $this->exchangeGetOrder->getOrder($orderId);
+
+        if(!is_null($order->getClosedAt())) {
             $session
                 ->setStatus(SessionStatusEnum::Sold)
                 ->setPriceSold($order->getPricePerUnit())

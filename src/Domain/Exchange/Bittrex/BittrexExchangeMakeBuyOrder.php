@@ -37,7 +37,7 @@ class BittrexExchangeMakeBuyOrder extends AbstractApiCallAuthenticated implement
             'rate' => $rate
         ]], ApiInputEnum::JSON);
 
-        if(isset($content->success) && true === $content->success) {
+        if(isset($content->success) && true === $content->success && isset($content->result)) {
             return $content->result->uuid;
         }
 

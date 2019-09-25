@@ -20,5 +20,4 @@ docker/db/datadir
 /.php_cs
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
-logs/cron/check-opportunity
-logs/cron/check-opportunity
+logs
